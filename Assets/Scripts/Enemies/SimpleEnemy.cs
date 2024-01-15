@@ -91,7 +91,7 @@ public class SimpleEnemy : MonoBehaviour
         // Verify if we're close enough to the next point in the path
         if (Vector3.Distance(transform.position, _path[_currentPathIndex].position.With(y:transform.position.y)) < _wanderDistanceToTarget)
         {
-            _logger.Trace("Wander - Reached !");
+            // _logger.Trace("Wander - Reached !");
             // If we are, increment the index
             _currentPathIndex++;
             // If we've reached the end of the path, loop back to the beginning
@@ -108,7 +108,7 @@ public class SimpleEnemy : MonoBehaviour
         
         if (angle < _wanderAngleToMove)
         {
-            _logger.Trace("Wander - Walking");
+            // _logger.Trace("Wander - Walking");
             // Walks towards the target
             transform.position = Vector3.MoveTowards(transform.position, nextPosition, _wanderMoveSpeed * Time.deltaTime);
         }
@@ -117,7 +117,7 @@ public class SimpleEnemy : MonoBehaviour
             // Set the target to the next point in the path
             _faceTarget.RotationSpeed = _wanderRotationSpeed;
             _faceTarget.Target = nextPosition;
-            _logger.Trace("Wander - Rotating");
+            // _logger.Trace("Wander - Rotating");
         }
     }
 
