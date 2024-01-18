@@ -93,6 +93,7 @@ public class SimpleEnemy : MonoBehaviour
                 Cooldown();
                 break;
             case EnemyState.Dead:
+                gameObject.SetActive(false);
                 break;
             default:
                 Debug.LogError("Unknown State :/");
@@ -266,8 +267,41 @@ public class SimpleEnemy : MonoBehaviour
     }
 
     #region State
+    [Header("State Events")]
+    [SerializeField] private UnityEvent OnSwitchToWander = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToLock = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToCharge = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToAttack = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToCooldown = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToDead = new UnityEvent();
+
     public void ChangeState(EnemyState newState)
     {
+        switch (newState)
+        {
+            case EnemyState.Wandering:
+                OnSwitchToWander.Invoke();
+                break;
+            case EnemyState.Locking:
+                OnSwitchToLock.Invoke();
+                break;
+            case EnemyState.Charging:
+                OnSwitchToCharge.Invoke();
+                break;
+            case EnemyState.Attacking:
+                OnSwitchToAttack.Invoke();
+                break;
+            case EnemyState.Cooldown:
+                OnSwitchToCooldown.Invoke();
+                break;
+            case EnemyState.Dead:
+                OnSwitchToDead.Invoke();
+                break;
+            default:
+                Debug.LogError("Unknown State :/");
+                break;
+        }
+
         _state = newState;
         OnStateChanged.Invoke(_state);
     }
