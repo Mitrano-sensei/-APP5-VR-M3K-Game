@@ -14,6 +14,11 @@ public class Interactable : MonoBehaviour
     public delegate bool Condition();
     private List<Condition> _conditions = new List<Condition>();
 
+    [SerializeField] private bool _hasCooldown = false;
+    [SerializeField] private float _cooldownInSeconds = 0f;
+
+    private float _lastInteractionTime = 0f;
+
     protected LogManager _logger;
 
     protected void Start()
@@ -22,6 +27,14 @@ public class Interactable : MonoBehaviour
 
         _onInteraction.AddListener((InteractEvent e) => { _logger.Trace("Interacted with " + name + (e.InteractedWith != null ? " while holding " + e.InteractedWith.name : "")); });
         _onInteractionFailed.AddListener((InteractEvent e) => { _logger.Trace("Failed to interact with " + name + (e.InteractedWith != null ? " while holding " + e.InteractedWith.name : "") + "because all conditions are not met."); });
+        _conditions.Add(() => { return !_hasCooldown || Time.time - _lastInteractionTime > _cooldownInSeconds; });
+        _onInteractionFailed.AddListener(e =>
+        {
+            if (_hasCooldown)
+            {
+                _logger.Trace(gameObject.name + " remaining cooldown : " + (_cooldownInSeconds - (Time.time - _lastInteractionTime)));
+            }
+        });
     }
 
     /**
@@ -36,6 +49,7 @@ public class Interactable : MonoBehaviour
         }
 
         _onInteraction.Invoke(interactEvent);
+        _lastInteractionTime = Time.time;
     }
 
     /**

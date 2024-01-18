@@ -1287,6 +1287,8 @@ MonoBehaviour:
   _onInteractionFailed:
     m_PersistentCalls:
       m_Calls: []
+  _hasCooldown: 1
+  _cooldownInSeconds: 2
 --- !u!4 &884784103 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 970957709038289846, guid: d9ec17ec60892174f822384733e26ba8, type: 3}
@@ -2896,6 +2898,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 450922794}
     m_Modifications:
+    - target: {fileID: 546029423, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
+      propertyPath: _hasCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 546029423, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
+      propertyPath: _cooldownInSeconds
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 546029423, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
       propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
