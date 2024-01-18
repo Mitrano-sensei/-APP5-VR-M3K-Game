@@ -959,7 +959,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1574687962187789295, guid: 11c2a9d218e8c684499ceae3203bccbe, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.023376465
+      value: -0.093444824
       objectReference: {fileID: 0}
     - target: {fileID: 1811282505552257171, guid: 11c2a9d218e8c684499ceae3203bccbe, type: 3}
       propertyPath: m_InteractionManager
@@ -2175,6 +2175,13 @@ MonoBehaviour:
   - {fileID: 1934314165}
   _lockRotationSpeed: 3
   _lockAngle: 5
+  _requiredChargeTime: 3
+  _cooldownTime: 3
+  _rocketSpeed: 10
+  _rocketLifeTime: 5
+  _rocketDamage: 10
+  _rocketExplosionRadius: 5
+  _rocketExplosionForce: 10
 --- !u!114 &1509935214
 MonoBehaviour:
   m_ObjectHideFlags: 0

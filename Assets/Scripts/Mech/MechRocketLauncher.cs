@@ -27,6 +27,12 @@ public class MechRocketLauncher : MonoBehaviour
 
     private LogManager _logger;
 
+    public float RocketSpeed { get => _rocketSpeed; set => _rocketSpeed = value; }
+    public float RocketLifeTime { get => _rocketLifeTime; set => _rocketLifeTime = value; }
+    public int RocketDamage { get => _rocketDamage; set => _rocketDamage = value; }
+    public float RocketExplosionRadius { get => _rocketExplosionRadius; set => _rocketExplosionRadius = value; }
+    public float RocketExplosionForce { get => _rocketExplosionForce; set => _rocketExplosionForce = value; }
+
     private void Start()
     {
         
@@ -40,11 +46,11 @@ public class MechRocketLauncher : MonoBehaviour
 
         var rocket = Instantiate(_rocketPrefab, _rocketSpawnPoint.position, _rocketSpawnPoint.rotation);
         var rocketScript = rocket.GetComponent<RocketScript>();
-        rocketScript.Speed = _rocketSpeed;
-        rocketScript.LifeTime = _rocketLifeTime;
-        rocketScript.Damage = _rocketDamage;
-        rocketScript.ExplosionRadius = _rocketExplosionRadius;
-        rocketScript.ExplosionForce= _rocketExplosionForce;
+        rocketScript.Speed = RocketSpeed;
+        rocketScript.LifeTime = RocketLifeTime;
+        rocketScript.Damage = RocketDamage;
+        rocketScript.ExplosionRadius = RocketExplosionRadius;
+        rocketScript.ExplosionForce= RocketExplosionForce;
         rocketScript.OnExplode = _onExplode;
         rocketScript.IsAlly = _isAlly;
         rocketScript.FiredBy = gameObject;
