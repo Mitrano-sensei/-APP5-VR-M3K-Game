@@ -60,6 +60,7 @@ public class Dockable : Pickable
 
         OnEject.AddListener(EjectHandler);
 
+        AddHoldConstraint();
         AddInteractionConstraint();
     }
 
@@ -72,6 +73,14 @@ public class Dockable : Pickable
         if (interactable == null) return;
 
         interactable.AddCondition(() => DockedOn.Count != 0);
+    }
+
+    private void AddHoldConstraint()
+    {
+        var holdable = GetComponent<Holdable>();
+        if (holdable == null) return;
+
+        holdable.AddCondition(() => DockedOn.Count != 0);
     }
 
     /**

@@ -35,7 +35,7 @@ public class Interactable : MonoBehaviour
             return;
         }
 
-        _onInteraction.Invoke(interactEvent);        
+        _onInteraction.Invoke(interactEvent);
     }
 
     /**
