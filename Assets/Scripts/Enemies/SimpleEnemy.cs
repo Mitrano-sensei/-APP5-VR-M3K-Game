@@ -38,6 +38,21 @@ public class SimpleEnemy : MonoBehaviour
     [Tooltip("The angle at which the enemy will start charging")]
     [SerializeField] private float _lockAngle = 5f;
 
+    [Header("Charge Stats")]
+    [SerializeField] private float _requiredChargeTime = 1f;
+
+    [Header("Attack Stats")]
+    [Tooltip("The Time the enemy will wait after attacking")]
+    [SerializeField] private float _cooldownTime = 1f;
+    [Space(10)]
+    [SerializeField] private float _rocketSpeed = 10f;
+    [SerializeField] private float _rocketLifeTime = 5f;
+    [Tooltip("Damage dealt by the rocket to enemies, note that it does not apply to player mech")]
+    [SerializeField] private int _rocketDamage = 10;
+    [SerializeField] private float _rocketExplosionRadius = 5f;
+    [SerializeField] private float _rocketExplosionForce = 10f;
+
+    private Color _baseColor;
 
     public void Start()
     {
@@ -47,6 +62,8 @@ public class SimpleEnemy : MonoBehaviour
 
         _gameManager = GameManager.Instance;
         _logger = LogManager.Instance;
+
+        _baseColor = GetComponent<Renderer>().material.color;
 
         _health.OnDeath.AddListener(deathEvent =>
         {
@@ -66,16 +83,26 @@ public class SimpleEnemy : MonoBehaviour
                 Lock();
                 break;
             case EnemyState.Charging:
+                Charge();
                 break;
             case EnemyState.Attacking:
+                Fire();
+                ChangeState(EnemyState.Cooldown);
+                break;
+            case EnemyState.Cooldown:
+                Cooldown();
                 break;
             case EnemyState.Dead:
+                gameObject.SetActive(false);
                 break;
             default:
                 Debug.LogError("Unknown State :/");
                 break;
         }
     }
+
+
+    #region Behaviors
 
     private int _currentPathIndex = 0;
     /**
@@ -85,6 +112,8 @@ public class SimpleEnemy : MonoBehaviour
      */
     private void Wander()
     {
+        _faceTarget.enabled = true;
+
         if (_path == null || _path.Length == 0)
             return;
 
@@ -127,6 +156,8 @@ public class SimpleEnemy : MonoBehaviour
      */
     private void Lock()
     {
+        _faceTarget.enabled = true;
+
         if (_lockTargetPosition == null)
             _lockTargetPosition = _gameManager.Player.transform.position;
 
@@ -172,16 +203,59 @@ public class SimpleEnemy : MonoBehaviour
         return false;
     }
 
-    public void ChangeState(EnemyState newState)
+    private float _currentChargeTime = 0f;
+    /**
+     * Charges for a certain amount of time, then fires.
+     * TODO : Should add an animation
+     */
+    private void Charge()
     {
-        _state = newState;
-        OnStateChanged.Invoke(_state);
-    }
+        _faceTarget.enabled = false;
+        // Tweeks colors from red to white to red until charging is complete
+        var color = Color.Lerp(_baseColor, Color.white, _currentChargeTime / _requiredChargeTime);
+        var renderer = GetComponent<Renderer>();
+        
+        if (_currentChargeTime >= _requiredChargeTime)
+        {
+            color = _baseColor;
+            ChangeState(EnemyState.Attacking);
+            _currentChargeTime = 0f;
+        }
+        else
+        {
+            _currentChargeTime += Time.deltaTime;
+        }
 
-    public void DebugFire()
+        renderer.material.color = color;
+    }
+    
+    public void Fire()
     {
+        // Sets Rocket Launcher's stats
+        _rocketLauncher.RocketDamage = _rocketDamage;
+        _rocketLauncher.RocketSpeed = _rocketSpeed;
+        _rocketLauncher.RocketLifeTime = _rocketLifeTime;
+        _rocketLauncher.RocketExplosionRadius = _rocketExplosionRadius;
+        _rocketLauncher.RocketExplosionForce = _rocketExplosionForce;
+
         _rocketLauncher.Fire();
     }
+
+    private float _currentCooldownTime = 0f;
+
+    private void Cooldown()
+    {
+        if (_cooldownTime - _currentCooldownTime <= 0)
+        {
+            _currentCooldownTime = 0f;
+            ChangeState(EnemyState.Wandering);
+            return;
+        }
+
+        _currentCooldownTime += Time.deltaTime;
+    }
+
+    #endregion
 
     public void OnDrawGizmosSelected()
     {
@@ -192,14 +266,56 @@ public class SimpleEnemy : MonoBehaviour
         }
     }
 
+    #region State
+    [Header("State Events")]
+    [SerializeField] private UnityEvent OnSwitchToWander = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToLock = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToCharge = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToAttack = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToCooldown = new UnityEvent();
+    [SerializeField] private UnityEvent OnSwitchToDead = new UnityEvent();
+
+    public void ChangeState(EnemyState newState)
+    {
+        switch (newState)
+        {
+            case EnemyState.Wandering:
+                OnSwitchToWander.Invoke();
+                break;
+            case EnemyState.Locking:
+                OnSwitchToLock.Invoke();
+                break;
+            case EnemyState.Charging:
+                OnSwitchToCharge.Invoke();
+                break;
+            case EnemyState.Attacking:
+                OnSwitchToAttack.Invoke();
+                break;
+            case EnemyState.Cooldown:
+                OnSwitchToCooldown.Invoke();
+                break;
+            case EnemyState.Dead:
+                OnSwitchToDead.Invoke();
+                break;
+            default:
+                Debug.LogError("Unknown State :/");
+                break;
+        }
+
+        _state = newState;
+        OnStateChanged.Invoke(_state);
+    }
+
     public enum EnemyState
     {
         Wandering,
         Locking,
         Charging,
         Attacking,
+        Cooldown,
         Dead
     }
+    #endregion
 }
 
 
