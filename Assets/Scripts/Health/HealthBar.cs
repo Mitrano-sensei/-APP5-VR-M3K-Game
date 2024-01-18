@@ -14,7 +14,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         _gm = GameManager.Instance;
-        _gm.OnHealthChangeDone.AddListener(PaintHealthBarUnitsListener);
+        _gm.OnHealthChange.AddListener(PaintHealthBarUnitsListener);
 
         _units = new HealthBarUnit[_gm.MaxHealth];
         float interval = _span / _units.Length; // Distance between each health bar unit
@@ -47,5 +47,5 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    void PaintHealthBarUnitsListener(OnHealthChangeDoneEvent onHealthChangeDoneEvent) => PaintHealthBarUnits();
+    void PaintHealthBarUnitsListener(OnHealthChangeEvent e) => PaintHealthBarUnits();
 }

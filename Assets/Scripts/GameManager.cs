@@ -13,14 +13,15 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Events")]
     [SerializeField] private OnHealthChange _onHealthChange = new OnHealthChange();
-    private OnHealthChangeDone _onHealthChangeDone = new OnHealthChangeDone();
+    [SerializeField] private OnHullDamageTaken _onHullDamageTaken = new OnHullDamageTaken();
 
     protected LogManager _logger;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public int MaxHealth { get => _maxHealth; }
     public OnHealthChange OnHealthChange { get => _onHealthChange; set => _onHealthChange = value; }
-    public OnHealthChangeDone OnHealthChangeDone { get => _onHealthChangeDone; set => _onHealthChangeDone = value; }
+    public OnHullDamageTaken OnHullDamageTaken { get => _onHullDamageTaken; set => _onHullDamageTaken = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +34,6 @@ public class GameManager : Singleton<GameManager>
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + onHealthChangeEvent.Amount, 0, MaxHealth);
         _logger.Trace("Health remaining: " + CurrentHealth);
         if (CurrentHealth <= 0)
         {
@@ -43,8 +43,9 @@ public class GameManager : Singleton<GameManager>
 
     public void GainHealth(int amount=1)
     {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
         OnHealthChange?.Invoke(new OnHealthChangeEvent(amount));
-        OnHealthChangeDone?.Invoke(new OnHealthChangeDoneEvent());
+        if (amount <= 0) OnHullDamageTaken.Invoke(amount);
     }
 }
 
@@ -64,11 +65,6 @@ public class OnHealthChangeEvent
     public int Amount { get => _amount; set => _amount = value; }
 }
 
-[Serializable] public class OnHealthChangeDone : UnityEvent<OnHealthChangeDoneEvent> { }
-
-public class OnHealthChangeDoneEvent
-{
-
-}
+[Serializable] public class OnHullDamageTaken : UnityEvent<int> { }
 #endregion
 
