@@ -142,13 +142,19 @@ public class PicoControlWatcher : AbstractControlWatcher
         if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
         {
             var interactable = hit.collider.gameObject.GetComponent<Interactable>();
-            if (interactable != null)
+            if (interactable != null && interactable.enabled)
             {
                 _lastInteractionTime = Time.time;
                 // Here we touched an interactable
                 OnInteractEvent.Invoke(interactable);
-                return;
             }
+
+            var holdable = hit.collider.gameObject.GetComponent<Holdable>();
+            if (holdable != null && holdable.enabled)
+            {
+                holdable.Hold();
+            }
+
 
             // Here we touched an item that is not an interactable.
             // Let's see if we are holding a usable item.
