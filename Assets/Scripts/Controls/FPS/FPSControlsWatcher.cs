@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -119,12 +118,11 @@ public class FPSControlsWatcher : AbstractControlWatcher
                     return;
                 }
 
-                GameObject hitObject = hit.collider.gameObject;
-
                 // Here we touched an item that is not an interactable.
                 var usableItem = GrabbedObject?.GetComponent<UsableItem>();
                 if (usableItem != null)
                 {
+                    GameObject hitObject = hit.collider.gameObject;
                     usableItem.OnUse.Invoke(new UseEvent(hitObject));
                     return;
                 }

@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8915697568018504491
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5157171038277036480, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: _centerPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036480, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: _centerPosition.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036480, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: _centerPosition.z
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036486, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_Name
+      value: Eject Random Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.29999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.29999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.257
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.82299805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.8559997
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.47715873
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8788171
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157171038277036487, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+--- !u!1 &4335585519596597997 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5157171038277036486, guid: 176f13a4ad0a256488df603a9fdd8640, type: 3}
+  m_PrefabInstance: {fileID: 8915697568018504491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &488698187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335585519596597997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7bf5efde6008b148b7723afa28038b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DockManager, Assembly-CSharp
+        m_MethodName: EjectRandomDocker
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onInteractionFailed:
+    m_PersistentCalls:
+      m_Calls: []
