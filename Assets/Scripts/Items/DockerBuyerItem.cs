@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class DockerBuyerItem : SingleUseItem
 {
-    // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
@@ -39,7 +38,8 @@ public class DockerBuyerItem : SingleUseItem
     {
         var dock = obj.GetComponent<Docker>();
         if (dock == null) return false;
-        return !dock.IsActive;
+        var dockManager = DockManager.Instance;
+        return !dock.IsActive && dockManager.IsBuyable(dock);
     }
 
     protected override bool CanBeUsedOnGround() => false;
