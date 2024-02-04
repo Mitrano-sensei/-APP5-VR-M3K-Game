@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6204512502317299505}
   - component: {fileID: 7040534323666663572}
   - component: {fileID: 5067103613672246366}
+  - component: {fileID: 8821615447493659840}
   m_Layer: 0
   m_Name: basketball_board
   m_TagString: Untagged
@@ -84,3 +85,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &8821615447493659840
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724168448448392587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2585677830436682242, guid: 9adfd1df0fb566149afeb7dc9c809103, type: 3}
