@@ -15,6 +15,9 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private OnHealthChange _onHealthChange = new OnHealthChange();
     private OnHealthChangeDone _onHealthChangeDone = new OnHealthChangeDone();
 
+    [Header("Misc")]
+    [SerializeField] private Transform _buttonParent;
+
     protected LogManager _logger;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
@@ -45,6 +48,27 @@ public class GameManager : Singleton<GameManager>
     {
         OnHealthChange?.Invoke(new OnHealthChangeEvent(amount));
         OnHealthChangeDone?.Invoke(new OnHealthChangeDoneEvent());
+    }
+
+    public void ShakeAllButtons()
+    {
+        var dock = DockManager.Instance.GetRandomUsedDocker();
+
+        while (dock != null)
+        {
+            dock.Eject();
+            dock = DockManager.Instance.GetRandomUsedDocker();
+        }
+
+        foreach (Transform button in _buttonParent)
+        {
+            button.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.insideUnitSphere * 10, ForceMode.Impulse);
+        }
+    }
+
+    public void ExitApp()
+    {
+        Application.Quit();
     }
 }
 
