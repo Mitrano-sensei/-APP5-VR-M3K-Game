@@ -11,12 +11,18 @@ public class Pickable : MonoBehaviour
     [SerializeField] private OnPickEvent _onPick = new OnPickEvent();
     [SerializeField] private OnUnPickEvent _onUnPick = new OnUnPickEvent();
 
+    [Header("Misc")]
+    [SerializeField] private bool _useRotationCorrecter = false;
+    [SerializeField] private Vector3 _correctPickRotation = new Vector3();
+
     private Transform _originParent;
     private VelocityCalculator _velocityCalculator;
 
     public OnPickEvent OnPick { get => _onPick; }
     public OnUnPickEvent OnUnPick { get => _onUnPick; }
     public Transform OriginParent { get => _originParent; set => _originParent = value; }
+    public Vector3 CorrectRotation { get => _correctPickRotation; set => _correctPickRotation = value; }
+    public bool UseRotationCorrecter { get => _useRotationCorrecter; set => _useRotationCorrecter = value; }
 
     protected LogManager _logger;
 

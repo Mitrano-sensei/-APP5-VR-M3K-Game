@@ -53,6 +53,11 @@ public class PicoControlWatcher : AbstractControlWatcher
             mover = DOTween.Sequence();
             mover = mover.Append(pickable.transform.DOLocalMove(Vector3.forward * _grabOffset + (dockable != null ? dockable.CenterPosition * 0.15f : Vector3.zero), .5f).SetEase(Ease.InOutQuad));
 
+            if (pickable.UseRotationCorrecter)
+            {
+                pickable.transform.DOLocalRotate(pickable.CorrectRotation, .5f).SetEase(Ease.InOutQuad);
+            }
+
             if (dockable != null)
             {
                 var rotationOffset = new Vector3(-90, 0, 0); // Because Correct rotation is for the item to dock, not to be picked. 
@@ -108,6 +113,8 @@ public class PicoControlWatcher : AbstractControlWatcher
         {
             HandleRelease();
         }
+
+        CheckHover();
 
     }
 
@@ -177,6 +184,47 @@ public class PicoControlWatcher : AbstractControlWatcher
             if (hit.collider.gameObject.GetComponent<Pickable>())
             {
                 OnGrabEvent.Invoke(hit.collider.gameObject.GetComponent<Pickable>());
+            }
+        }
+    }
+
+    private Hoverable _oldTarget;
+
+    void CheckHover()
+    {
+        RaycastHit hit;
+        if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
+        {
+            var newTarget = hit.collider?.gameObject?.GetComponent<Hoverable>();
+            // From no target to a target
+            if (_oldTarget == null && newTarget != null) {
+                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent() : new OnHoverEnterEvent(GrabbedObject.gameObject));
+            }
+            // From a target to another
+            else if (_oldTarget != null && _oldTarget != newTarget && newTarget != null)
+            {
+                _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
+                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+
+                _oldTarget.OnHoverExit.Invoke(GrabbedObject == null ? new OnHoverExitEvent() : new OnHoverExitEvent(GrabbedObject.gameObject));
+
+                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent() : new OnHoverEnterEvent(GrabbedObject.gameObject));
+            }
+            // From target to same target (no change)
+            else if (_oldTarget != null && _oldTarget == newTarget) { newTarget.OnHover.Invoke(new OnHoverEvent()); }
+            // From a target to no target
+            else if (_oldTarget != null && newTarget == null) {
+                _oldTarget.OnHoverExit.Invoke(GrabbedObject == null ? new OnHoverExitEvent() : new OnHoverExitEvent(GrabbedObject.gameObject));
+            }
+
+            _oldTarget = newTarget;
+        }
+        else
+        {
+            if (_oldTarget != null)
+            {
+                _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
+                _oldTarget = null;
             }
         }
     }
