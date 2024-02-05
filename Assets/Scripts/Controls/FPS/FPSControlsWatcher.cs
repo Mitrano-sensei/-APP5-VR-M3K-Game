@@ -10,6 +10,8 @@ public class FPSControlsWatcher : AbstractControlWatcher
     [Header("Player")]
     [SerializeField] private GameObject _player;
 
+    private Hoverable _oldTarget;
+
     protected override void Awake()
     {
         base.Awake();
@@ -148,6 +150,36 @@ public class FPSControlsWatcher : AbstractControlWatcher
                 }
             }
         }
+
+        HoverCheck();
     }
-    
+
+    private void HoverCheck()
+    {
+        RaycastHit hit;
+        if (Helpers.HitBehindGrabbedObject(GrabbedObject?.gameObject, out hit))
+        {
+            var newTarget = hit.collider?.gameObject?.GetComponent<Hoverable>();
+            // From no target to a target
+            if (_oldTarget == null && newTarget != null) { newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent()); }
+            // From a target to another
+            else if (_oldTarget != null && _oldTarget != newTarget && newTarget != null)
+            {
+                _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
+                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+            }
+            // From target to same target (no change)
+            else if (_oldTarget != null && _oldTarget == newTarget) { newTarget.OnHover.Invoke(new OnHoverEvent()); }
+            // From a target to no target
+            else if (_oldTarget != null && newTarget == null) { _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent()); }
+
+            _oldTarget = newTarget;
+        }
+        else
+        {
+            // From a target to none
+            _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
+        }
+    }
+
 }
