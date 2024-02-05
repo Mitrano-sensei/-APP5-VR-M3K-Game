@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
@@ -9,6 +10,17 @@ public class PicoControlWatcher : AbstractControlWatcher
     [Header("Player")]
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _hand;
+
+    [Header("Grab")]
+    [SerializeField] private float _grabOffset = 0.5f;
+
+    [Header("Teleportation")]
+    [SerializeField] private float _teleportationCooldown = 1f;
+    private float _lastTeleportationTime = 0f;
+
+    [Header("Interaction")]
+    [SerializeField] private float _interactionCooldown = 0.5f;
+    private float _lastInteractionTime = 0f;
 
     private List<InputDevice> _devices;
 
@@ -39,7 +51,7 @@ public class PicoControlWatcher : AbstractControlWatcher
 
             pickable.transform.SetParent(_hand.transform);
             mover = DOTween.Sequence();
-            mover = mover.Append(pickable.transform.DOLocalMove(Vector3.forward + (dockable != null ? dockable.CenterPosition * 0.15f : Vector3.zero), .5f).SetEase(Ease.InOutQuad));
+            mover = mover.Append(pickable.transform.DOLocalMove(Vector3.forward * _grabOffset + (dockable != null ? dockable.CenterPosition * 0.15f : Vector3.zero), .5f).SetEase(Ease.InOutQuad));
 
             if (dockable != null)
             {
@@ -65,6 +77,7 @@ public class PicoControlWatcher : AbstractControlWatcher
 
     protected void Update()
     {
+        // Get Inputs
         bool triggerButtonState = false;
         bool menuButtonState = false;
         bool arrowButtonState = false;
@@ -76,26 +89,101 @@ public class PicoControlWatcher : AbstractControlWatcher
             device.TryGetFeatureValue(CommonUsages.primary2DAxisClick, out arrowButtonState);
         }
 
-        if (arrowButtonState)
+        // Handle Inputs
+        if (menuButtonState && Time.time - _lastTeleportationTime > _teleportationCooldown)
         {
-            // Raycast from hand, if hit, teleport to hit point.
-            RaycastHit hit;
-            if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
-            {
-                // If the object is a teleporter, invoke the event.
-                if (hit.collider.gameObject.GetComponent<TeleportationArea>())
-                {
-                    OnTeleportEvent.Invoke(hit.point);
-                }
-            }
+            HandleTeleport();
         }
 
+        if (arrowButtonState && Time.time - _lastInteractionTime > _interactionCooldown)
+        {
+            HandleInteraction();
+        }
 
-
-
+        if (triggerButtonState && GrabbedObject == null)
+        {
+            HandleGrab();
+        }
+        else if (!triggerButtonState && GrabbedObject != null)
+        {
+            HandleRelease();
+        }
 
     }
 
+    #region Interactions
+    private void HandleRelease()
+    {
+        // Raycast from main camera to next object.
+        RaycastHit hit;
+        Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit);
+        var docker = hit.collider?.gameObject?.GetComponent<Docker>();
+        OnReleaseEvent.Invoke(docker == null ? new ReleasedEvent(GrabbedObject) : new ReleasedEvent(GrabbedObject, docker));
+    }
+
+    private void HandleTeleport()
+    {
+        // Raycast from hand, if hit, teleport to hit point.
+        RaycastHit hit;
+        if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
+        {
+            // If the object is a teleporter, invoke the event.
+            if (hit.collider.gameObject.GetComponent<TeleportationArea>())
+            {
+                OnTeleportEvent.Invoke(hit.point);
+                _lastTeleportationTime = Time.time;
+            }
+        }
+    }
+
+    private void HandleInteraction()
+    {
+        RaycastHit hit;
+        if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
+        {
+            var interactable = hit.collider.gameObject.GetComponent<Interactable>();
+            if (interactable != null && interactable.enabled)
+            {
+                _lastInteractionTime = Time.time;
+                // Here we touched an interactable
+                OnInteractEvent.Invoke(interactable);
+            }
+
+            var holdable = hit.collider.gameObject.GetComponent<Holdable>();
+            if (holdable != null && holdable.enabled)
+            {
+                holdable.Hold();
+            }
+
+
+            // Here we touched an item that is not an interactable.
+            // Let's see if we are holding a usable item.
+            var usableItem = GrabbedObject?.GetComponent<UsableItem>();
+            if (usableItem != null)
+            {
+                GameObject hitObject = hit.collider.gameObject;
+                usableItem.OnUse.Invoke(new UseEvent(hitObject));
+                return;
+            }
+        }
+    }
+
+    private void HandleGrab()
+    {
+        RaycastHit hit;
+        if (Helpers.HitBehindGrabbedObjectFromHand(_hand, GrabbedObject?.gameObject, out hit))
+        {
+            // If the object is a pickable, invoke the event.
+            if (hit.collider.gameObject.GetComponent<Pickable>())
+            {
+                OnGrabEvent.Invoke(hit.collider.gameObject.GetComponent<Pickable>());
+            }
+        }
+    }
+
+    #endregion
+
+    #region Device Management
 
     private void DeviceConnected(InputDevice device)
     {
@@ -127,5 +215,7 @@ public class PicoControlWatcher : AbstractControlWatcher
         InputDevices.deviceDisconnected += DeviceDisconnected;
         InputDevices.deviceConnected += DeviceConnected;
     }
+
+    #endregion
 
 }

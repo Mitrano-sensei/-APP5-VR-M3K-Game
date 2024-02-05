@@ -1,5 +1,4 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -61,8 +60,6 @@ public class FPSControlsWatcher : AbstractControlWatcher
         // Calls Teleport event if the player presses the right mouse button.
         if (Input.GetMouseButtonDown(1))
         {
-            _logger.Trace("Right button");
-
             // Raycast from main camera to next object.
             RaycastHit hit;
             if (Helpers.HitBehindGrabbedObject(GrabbedObject?.gameObject, out hit))
@@ -113,18 +110,17 @@ public class FPSControlsWatcher : AbstractControlWatcher
             {
                 Interactable interactable = hit.collider.gameObject.GetComponent<Interactable>();
                 // If the object is an interactable, invoke the event.
-                if (interactable != null)
+                if (interactable != null && interactable.enabled)
                 {
                     OnInteractEvent.Invoke(interactable);
                     return;
                 }
 
-                GameObject hitObject = hit.collider.gameObject;
-
                 // Here we touched an item that is not an interactable.
                 var usableItem = GrabbedObject?.GetComponent<UsableItem>();
                 if (usableItem != null)
                 {
+                    GameObject hitObject = hit.collider.gameObject;
                     usableItem.OnUse.Invoke(new UseEvent(hitObject));
                     return;
                 }
@@ -138,6 +134,18 @@ public class FPSControlsWatcher : AbstractControlWatcher
             {             
                 usableItem_.OnUse.Invoke(new UseEvent());
                 return;
+            }
+        }
+        if (Input.GetMouseButton(0))
+        {
+            RaycastHit hit;
+            if (Helpers.HitBehindGrabbedObject(GrabbedObject?.gameObject, out hit))
+            {
+                Holdable holdable = hit.collider.gameObject.GetComponent<Holdable>();
+                if (holdable != null)
+                {
+                    holdable.Hold();
+                }
             }
         }
     }
