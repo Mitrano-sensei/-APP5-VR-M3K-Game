@@ -2143,6 +2143,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1163341469097971916, guid: 3639b3d87e0293246935ee0cf14778f4, type: 3}
+      propertyPath: _collisionClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ee169317f2618040b9bbcdef47a563e, type: 3}
     - target: {fileID: 1163341471010937456, guid: 3639b3d87e0293246935ee0cf14778f4, type: 3}
       propertyPath: m_Name
       value: Systems
