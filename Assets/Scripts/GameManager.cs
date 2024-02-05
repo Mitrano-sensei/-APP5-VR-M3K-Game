@@ -13,7 +13,9 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Events")]
     [SerializeField] private OnHealthChange _onHealthChange = new OnHealthChange();
+    [SerializeField] private OnHealthChange _onDamageTaken = new OnHealthChange();
     private OnHealthChangeDone _onHealthChangeDone = new OnHealthChangeDone();
+    public OnHealthChange OnDamageTaken { get => _onDamageTaken; set => _onDamageTaken = value; }
 
     [Header("Misc")]
     [SerializeField] private Transform _buttonParent;
@@ -32,6 +34,13 @@ public class GameManager : Singleton<GameManager>
         CurrentHealth = MaxHealth;
 
         OnHealthChange.AddListener(OnHealthChangeHandler);
+        OnHealthChange.AddListener(e =>
+        {
+            if (e.Amount < 0)
+            {
+                OnDamageTaken?.Invoke(e);
+            }
+        });
     }
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)

@@ -42,20 +42,17 @@ public class RotatingLight : MonoBehaviour
             }
         }
 
+        _gameManager.OnDamageTaken.AddListener((OnHealthChangeEvent e) =>
+        {
+            _isDanger = true;
+            _dangerStartTime = Time.time;
+        });
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        _gameManager.OnHealthChange.AddListener((OnHealthChangeEvent e) =>
-        { 
-            if (e.Amount < 0)
-            {
-                _isDanger = true;
-                _dangerStartTime = Time.time;
-            }
-        });
         RotateLights();
         if (_isDanger)
         {
@@ -67,7 +64,6 @@ public class RotatingLight : MonoBehaviour
     {
         foreach(Light light in _lights)
         {
-
             light.transform.Rotate(0, _rotationSpeed * Time.deltaTime * (_isDanger ? _dangerSpeedMultiplier : 1), 0);
         }
     }
