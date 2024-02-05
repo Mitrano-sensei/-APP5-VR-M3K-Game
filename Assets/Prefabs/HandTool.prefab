@@ -92,10 +92,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.05
-  m_fontSizeBase: 1
+  m_fontSize: 0.03
+  m_fontSizeBase: 0.03
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 0
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
+  m_overflowMode: 1
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 8024380049809951991}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.44, y: 1.04, z: 0}
-  m_LocalScale: {x: 0.16133, y: 0.24277657, z: 0.3914541}
+  m_LocalScale: {x: 0.1177709, y: 0.1772269, z: 0.2857615}
   m_Children:
   - {fileID: 2180761015210269325}
   m_Father: {fileID: 0}
@@ -441,6 +441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4666c282ef89a244ebfbed62321c4e45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _screenHolder: {fileID: 3737874802011909460}
+  _text: {fileID: 955198867278175463}
 --- !u!114 &8024380049809951989
 MonoBehaviour:
   m_ObjectHideFlags: 0
