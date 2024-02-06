@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,6 +13,11 @@ public class EnemyHealth : MonoBehaviour
     [Header("Events")]
     [SerializeField] private bool _destroyOnDeath = true;
     [SerializeField] private OnDeath _onDeath = new OnDeath();
+
+    [Header("Loot")]
+    [Tooltip("Parent to spawn loot (usables) under")]
+    [SerializeField] private Transform _usableParent;
+    [SerializeField] private List<GameObject> _loot;
     public OnDeath OnDeath { get { return _onDeath; } }
 
     private Damageable _damageable;
@@ -32,14 +38,25 @@ public class EnemyHealth : MonoBehaviour
             _currentHealth -= damageEvent.Damage;
             if ( _currentHealth <= 0)
             {
-                OnDeath.Invoke(new DeathEvent());
-
-                if (_destroyOnDeath)
-                {
-                    Destroy(gameObject);
-                }
+                Die();
             }
         });
+    }
+
+    public void Die()
+    {
+        OnDeath.Invoke(new DeathEvent());
+
+        if (_loot.Count > 0)
+        {
+            foreach (var item in _loot)
+            {
+                Instantiate(item, _usableParent.position, Quaternion.identity, _usableParent);
+            }
+        }
+
+        if (_destroyOnDeath) Destroy(gameObject);
+        else gameObject.SetActive(false);
     }
 }
 
