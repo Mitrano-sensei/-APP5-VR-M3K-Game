@@ -19,6 +19,11 @@ public class HoverAnim : MonoBehaviour
                 _particles.transform.position = OnHoverEnterEvent.PointPosition;
                 _particles.Play();
             });
+        _hoverable.OnHover.AddListener(e =>
+        {
+            _particles.transform.position = e.PointPosition;
+        });
+
         _hoverable.OnHoverExit.AddListener((OnHoverExitEvent) => _particles.Stop());
     }
 }

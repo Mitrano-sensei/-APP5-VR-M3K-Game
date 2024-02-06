@@ -192,7 +192,7 @@ public class FPSControlsWatcher : AbstractControlWatcher
             }
             // From target to same target (no change)
             else if (_oldTarget != null && _oldTarget == newTarget) {
-                _oldTarget.OnHover.Invoke(new OnHoverEvent());
+                _oldTarget.OnHover.Invoke(new OnHoverEvent(hit.point));
             }
             // From a target to no target
             else if (_oldTarget != null && newTarget == null) {

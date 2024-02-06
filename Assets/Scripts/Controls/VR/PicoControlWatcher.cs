@@ -211,7 +211,7 @@ public class PicoControlWatcher : AbstractControlWatcher
                 newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent(hit.point) : new OnHoverEnterEvent(hit.point, GrabbedObject.gameObject));
             }
             // From target to same target (no change)
-            else if (_oldTarget != null && _oldTarget == newTarget) { newTarget.OnHover.Invoke(new OnHoverEvent()); }
+            else if (_oldTarget != null && _oldTarget == newTarget) { newTarget.OnHover.Invoke(new OnHoverEvent(hit.point)); }
             // From a target to no target
             else if (_oldTarget != null && newTarget == null) {
                 _oldTarget.OnHoverExit.Invoke(GrabbedObject == null ? new OnHoverExitEvent() : new OnHoverExitEvent(GrabbedObject.gameObject));

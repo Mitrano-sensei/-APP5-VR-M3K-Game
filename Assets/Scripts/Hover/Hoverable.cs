@@ -30,7 +30,14 @@ public class OnHoverEnterEvent {
 }
 
 [Serializable] public class OnHover : UnityEvent<OnHoverEvent> { }
-public class OnHoverEvent { }
+public class OnHoverEvent {
+    public Vector3 PointPosition;
+
+    public OnHoverEvent(Vector3 pointPosition = new Vector3())
+    {
+        PointPosition = pointPosition;
+    }
+}
 
 [Serializable] public class OnHoverExit : UnityEvent<OnHoverExitEvent> { }
 public class OnHoverExitEvent {
