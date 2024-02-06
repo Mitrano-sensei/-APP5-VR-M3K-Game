@@ -30,9 +30,10 @@ public class Interactable : MonoBehaviour
         _conditions.Add(() => { return !_hasCooldown || Time.time - _lastInteractionTime > _cooldownInSeconds; });
         _onInteractionFailed.AddListener(e =>
         {
-            if (_hasCooldown)
+            var remaining = (_cooldownInSeconds - (Time.time - _lastInteractionTime));
+            if (_hasCooldown && remaining > 0)
             {
-                _logger.Trace(gameObject.name + " remaining cooldown : " + (_cooldownInSeconds - (Time.time - _lastInteractionTime)));
+                _logger.Trace(gameObject.name + " remaining cooldown : " + remaining);
             }
         });
     }

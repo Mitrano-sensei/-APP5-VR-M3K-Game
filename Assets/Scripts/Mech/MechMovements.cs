@@ -20,7 +20,11 @@ public class MechMovements : MonoBehaviour
     {
         if (_isMovingForward)
         {
-            transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            // Raycasts 1m forward, if it hits something in obstacle layer, stop moving forward
+            if (Physics.Raycast(transform.position, transform.forward, 1f, LayerMask.GetMask("Obstacle")))
+                _isMovingForward = false;
+            else
+                transform.Translate(Vector3.forward * Speed * Time.deltaTime);
         }
         else if (_isMovingBackward)
         {

@@ -18,12 +18,25 @@ public class Hoverable : MonoBehaviour
 #region Events
 
 [Serializable] public class OnHoverEnter: UnityEvent<OnHoverEnterEvent> {  }
-public class OnHoverEnterEvent { }
+public class OnHoverEnterEvent {
+    public GameObject HoveredWith;
+    
+    public OnHoverEnterEvent(GameObject hoveredWith = null)
+    {
+        HoveredWith = hoveredWith;
+    }
+}
 
 [Serializable] public class OnHover : UnityEvent<OnHoverEvent> { }
 public class OnHoverEvent { }
 
 [Serializable] public class OnHoverExit : UnityEvent<OnHoverExitEvent> { }
-public class OnHoverExitEvent { }
+public class OnHoverExitEvent {
+    public GameObject HoveredWith;
+    public OnHoverExitEvent(GameObject hoveredWith = null)
+    {
+        HoveredWith = hoveredWith;
+    }
+}
 
 #endregion
