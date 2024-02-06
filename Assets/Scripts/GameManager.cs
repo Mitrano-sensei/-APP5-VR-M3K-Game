@@ -8,8 +8,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int _maxHealth = 20;
     private int currentHealth;
 
-    [SerializeField] private Transform _player;
-    public Transform Player { get => _player; }
+    [SerializeField] private Transform _playerMech;
+    public Transform PlayerMech { get => _playerMech; }
 
     [Header("Events")]
     [SerializeField] private OnHealthChange _onHealthChange = new OnHealthChange();
@@ -77,7 +77,14 @@ public class GameManager : Singleton<GameManager>
 
     public void ExitApp()
     {
+        _logger.Log("Exiting application");
         Application.Quit();
+    }
+
+    public void StartMainScene()
+    {
+        _logger.Log("Starting main scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 }
 

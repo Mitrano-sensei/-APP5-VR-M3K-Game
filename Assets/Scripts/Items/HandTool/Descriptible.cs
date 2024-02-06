@@ -19,7 +19,7 @@ public class Descriptible : MonoBehaviour
 
     public void OnHoverEnter(OnHoverEnterEvent e)
     {
-        var handtool = e.HoveredWith.GetComponent<HandTool>();
+        var handtool = e.HoveredWith?.GetComponent<HandTool>();
         if (handtool == null)
             return;
 
@@ -28,7 +28,7 @@ public class Descriptible : MonoBehaviour
 
     public void OnHoverExit(OnHoverExitEvent e)
     {
-        var handtool = e.HoveredWith.GetComponent<HandTool>();
+        var handtool = e.HoveredWith?.GetComponent<HandTool>();
         if (handtool == null)
             return;
 

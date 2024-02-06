@@ -19,6 +19,8 @@ public class FPSControlsWatcher : AbstractControlWatcher
 
     public void Start()
     {
+        _logger = _logger ?? LogManager.Instance;
+
         OnTeleportEvent.AddListener((Vector3 newPos) =>
         {
             _player.transform.position = newPos;
