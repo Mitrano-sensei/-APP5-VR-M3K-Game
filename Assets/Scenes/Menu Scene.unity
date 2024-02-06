@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5aff1950e358a46b70910d01635169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logMode: 0
+  _logMode: 1
   _inGameConsole: {fileID: 1903818771}
 --- !u!1 &198579915
 GameObject:
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 20
-  _player: {fileID: 0}
+  _playerMech: {fileID: 0}
   _onHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1308,6 +1308,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _buttonParent: {fileID: 337672699}
+  _intensity: 1.4
 --- !u!4 &825643316
 Transform:
   m_ObjectHideFlags: 0

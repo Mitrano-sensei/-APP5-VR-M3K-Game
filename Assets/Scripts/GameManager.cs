@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private Transform _buttonParent;
 
     protected LogManager _logger;
+    [SerializeField] private float _intensity = 1.4f;
 
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public int MaxHealth { get => _maxHealth; }
@@ -71,7 +72,7 @@ public class GameManager : Singleton<GameManager>
 
         foreach (Transform button in _buttonParent)
         {
-            button.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.insideUnitSphere * 10, ForceMode.Impulse);
+            button.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.insideUnitSphere * 10 * _intensity, ForceMode.Impulse);
         }
     }
 
