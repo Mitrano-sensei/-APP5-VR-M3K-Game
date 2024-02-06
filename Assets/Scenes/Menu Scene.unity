@@ -1664,6 +1664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1746373626}
     m_Modifications:
+    - target: {fileID: 50530567, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _description
+      value: "Credits : \nElyas TIGRE - Bastien PILI"
+      objectReference: {fileID: 0}
     - target: {fileID: 1365820301, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
       propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2082,7 +2086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4690143699752417383, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0076293945
+      value: 0.008605957
       objectReference: {fileID: 0}
     - target: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_RootOrder
@@ -2218,8 +2222,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please use the handtool on the table to analyse the button next to the
+  m_text: 'Please use the handtool on the table to analyse the button next to the
     motherboard.
+
+
+    Scan the basketball for credits !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2246,7 +2253,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.25
+  m_fontSize: 0.15
   m_fontSizeBase: 0.05
   m_fontWeight: 400
   m_enableAutoSizing: 1

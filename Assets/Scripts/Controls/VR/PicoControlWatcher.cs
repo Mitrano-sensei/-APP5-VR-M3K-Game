@@ -198,17 +198,17 @@ public class PicoControlWatcher : AbstractControlWatcher
             var newTarget = hit.collider?.gameObject?.GetComponent<Hoverable>();
             // From no target to a target
             if (_oldTarget == null && newTarget != null) {
-                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent() : new OnHoverEnterEvent(GrabbedObject.gameObject));
+                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent(hit.point) : new OnHoverEnterEvent(hit.point, GrabbedObject.gameObject));
             }
             // From a target to another
             else if (_oldTarget != null && _oldTarget != newTarget && newTarget != null)
             {
                 _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
-                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point));
 
                 _oldTarget.OnHoverExit.Invoke(GrabbedObject == null ? new OnHoverExitEvent() : new OnHoverExitEvent(GrabbedObject.gameObject));
 
-                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent() : new OnHoverEnterEvent(GrabbedObject.gameObject));
+                newTarget.OnHoverEnter.Invoke(GrabbedObject == null ? new OnHoverEnterEvent(hit.point) : new OnHoverEnterEvent(hit.point, GrabbedObject.gameObject));
             }
             // From target to same target (no change)
             else if (_oldTarget != null && _oldTarget == newTarget) { newTarget.OnHover.Invoke(new OnHoverEvent()); }

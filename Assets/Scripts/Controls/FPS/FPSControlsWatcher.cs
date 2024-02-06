@@ -170,15 +170,15 @@ public class FPSControlsWatcher : AbstractControlWatcher
             // From no target to a target
             if (_oldTarget == null && newTarget != null) {
                 if (GrabbedObject == null)
-                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point));
                 else
-                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(GrabbedObject.gameObject));
+                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point, GrabbedObject.gameObject));
             }
             // From a target to another
             else if (_oldTarget != null && _oldTarget != newTarget && newTarget != null)
             {
                 _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
-                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+                newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point));
 
                 if (GrabbedObject == null)
                     _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent());
@@ -186,9 +186,9 @@ public class FPSControlsWatcher : AbstractControlWatcher
                     _oldTarget.OnHoverExit.Invoke(new OnHoverExitEvent(GrabbedObject.gameObject));
 
                 if (GrabbedObject == null)
-                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent());
+                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point));
                 else
-                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(GrabbedObject.gameObject));
+                    newTarget.OnHoverEnter.Invoke(new OnHoverEnterEvent(hit.point, GrabbedObject.gameObject));
             }
             // From target to same target (no change)
             else if (_oldTarget != null && _oldTarget == newTarget) {
