@@ -35,13 +35,7 @@ public class GameManager : Singleton<GameManager>
         CurrentHealth = MaxHealth;
 
         OnHealthChange.AddListener(OnHealthChangeHandler);
-        OnHealthChange.AddListener(e =>
-        {
-            if (e.Amount < 0)
-            {
-                OnDamageTaken?.Invoke(e);
-            }
-        });
+        OnHealthChange.AddListener(e => StartMenuScene());
     }
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)
@@ -51,6 +45,11 @@ public class GameManager : Singleton<GameManager>
         if (CurrentHealth <= 0)
         {
             _logger.Trace("You are DED. GAME OVER.");
+        }
+
+        if (onHealthChangeEvent.Amount < 0)
+        {
+            OnDamageTaken?.Invoke(onHealthChangeEvent);
         }
     }
 
@@ -86,6 +85,12 @@ public class GameManager : Singleton<GameManager>
     {
         _logger.Log("Starting main scene");
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
+    }
+
+    public void StartMenuScene()
+    {
+        _logger.Log("Starting menu scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu Scene");
     }
 }
 

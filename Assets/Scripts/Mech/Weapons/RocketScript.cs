@@ -45,7 +45,7 @@ public class RocketScript : MonoBehaviour
         var collide = collision.collider;
         if ((_isAlly && collide.GetComponent<MechMovements>() != null) || collide.GetComponent<RocketScript>() != null ) { return; } // Can't collide with the mech that fired it, TODO : Add a tag to the mech and check for that instead ?
         if (collide.gameObject == FiredBy) { return; } // Can't collide with the mech that fired it, TODO : Add a tag to the mech and check for that instead ?
-        Debug.Log("Firedby " + FiredBy + ", Collision " + collide.gameObject);
+        _logger.Trace("Firedby " + FiredBy + ", Collision " + collide.gameObject);
 
         OnExplode?.Invoke();
         _logger.Trace("Rocket collided with " + collision.gameObject.name);
@@ -56,7 +56,7 @@ public class RocketScript : MonoBehaviour
             if (_isAlly && collider.gameObject.GetComponent<MechMovements>()) { continue; } // Can't collide with the mech that fired it, TODO : Add a tag to the mech and check for that instead ?
             // Note that enemies can still be damaged by other enemies' rockets
 
-            Debug.Log("Exploding on " + collider.gameObject.name);
+            _logger.Trace("Exploding on " + collider.gameObject.name);
             var rb = collider.gameObject.GetComponent<Rigidbody>();
             if (rb != null && !rb.isKinematic)
             {
