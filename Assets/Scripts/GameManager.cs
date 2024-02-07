@@ -41,6 +41,8 @@ public class GameManager : Singleton<GameManager>
                 OnDamageTaken?.Invoke(e);
             }
         });
+
+        GainHealth(0);
     }
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)
