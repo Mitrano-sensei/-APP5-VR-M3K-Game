@@ -93,7 +93,7 @@ public class DockManager : Singleton<DockManager>
      */
     public bool IsBuyable(Docker dock)
     {
-        return !dock.IsActive && GetNeighbours(dock).ToList().FindAll(d => d.IsActive).Count > 0;
+        return !dock.IsActive && ((dock.X == dock.Y && dock.X == 0) || GetNeighbours(dock).ToList().FindAll(d => d.IsActive).Count > 0);
     }
 
     /**

@@ -8,12 +8,17 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private int _maxHealth = 20;
     private int currentHealth;
 
-    [SerializeField] private Transform _player;
-    public Transform Player { get => _player; }
+    [SerializeField] private Transform _playerMech;
+    public Transform PlayerMech { get => _playerMech; }
 
     [Header("Events")]
     [SerializeField] private OnHealthChange _onHealthChange = new OnHealthChange();
+    [SerializeField] private OnHealthChange _onDamageTaken = new OnHealthChange();
     private OnHealthChangeDone _onHealthChangeDone = new OnHealthChangeDone();
+    public OnHealthChange OnDamageTaken { get => _onDamageTaken; set => _onDamageTaken = value; }
+
+    [Header("Misc")]
+    [SerializeField] private Transform _buttonParent;
 
     protected LogManager _logger;
 
@@ -29,6 +34,13 @@ public class GameManager : Singleton<GameManager>
         CurrentHealth = MaxHealth;
 
         OnHealthChange.AddListener(OnHealthChangeHandler);
+        OnHealthChange.AddListener(e =>
+        {
+            if (e.Amount < 0)
+            {
+                OnDamageTaken?.Invoke(e);
+            }
+        });
     }
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)
@@ -45,6 +57,34 @@ public class GameManager : Singleton<GameManager>
     {
         OnHealthChange?.Invoke(new OnHealthChangeEvent(amount));
         OnHealthChangeDone?.Invoke(new OnHealthChangeDoneEvent());
+    }
+
+    public void ShakeAllButtons()
+    {
+        var dock = DockManager.Instance.GetRandomUsedDocker();
+
+        while (dock != null)
+        {
+            dock.Eject();
+            dock = DockManager.Instance.GetRandomUsedDocker();
+        }
+
+        foreach (Transform button in _buttonParent)
+        {
+            button.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.insideUnitSphere * 10, ForceMode.Impulse);
+        }
+    }
+
+    public void ExitApp()
+    {
+        _logger.Log("Exiting application");
+        Application.Quit();
+    }
+
+    public void StartMainScene()
+    {
+        _logger.Log("Starting main scene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main");
     }
 }
 

@@ -159,9 +159,9 @@ public class SimpleEnemy : MonoBehaviour
         _faceTarget.enabled = true;
 
         if (_lockTargetPosition == null)
-            _lockTargetPosition = _gameManager.Player.transform.position;
+            _lockTargetPosition = _gameManager.PlayerMech.transform.position;
 
-        var lockTargetPosition = _lockTargetPosition ?? _gameManager.Player.transform.position; // So Vector3 is not nullable
+        var lockTargetPosition = _lockTargetPosition ?? _gameManager.PlayerMech.transform.position; // So Vector3 is not nullable
 
         if (Vector3.Angle(transform.forward, lockTargetPosition - transform.position) < _lockAngle)
         {
@@ -185,7 +185,7 @@ public class SimpleEnemy : MonoBehaviour
         if (_state == EnemyState.Wandering)
         {
               // Verify if the player is within the aggro range
-            var player = _gameManager.Player;
+            var player = _gameManager.PlayerMech;
             if (player == null)
             {
                 Debug.LogError("Player is null");
