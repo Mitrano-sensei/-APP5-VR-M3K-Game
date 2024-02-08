@@ -6,6 +6,7 @@ using UnityEngine.Events;
 /**
  * Objects that can be interacted with.
  */
+[RequireComponent(typeof(InteractionSound))]
 public class Interactable : MonoBehaviour
 {
     [SerializeField] private OnInteractionEvent _onInteraction = new OnInteractionEvent();
@@ -20,6 +21,9 @@ public class Interactable : MonoBehaviour
     private float _lastInteractionTime = 0f;
 
     protected LogManager _logger;
+
+    public OnInteractionEvent OnInteraction { get => _onInteraction; }
+    public OnInteractionFailedEvent OnInteractionFailed { get => _onInteractionFailed; }
 
     protected void Start()
     {
