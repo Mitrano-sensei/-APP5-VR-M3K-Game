@@ -61,12 +61,12 @@ public class AudioSystem : StaticInstance<AudioSystem> {
 
     public void PlayDockSound()
     {
-        PlaySound(_dockClip, 2);
+        PlaySound(_dockClip, 1);
     }
 
     public void PlayRocketLaunchSound()
     {
-        PlaySound(_rocketLaunchClip, 3);
+        PlaySound(_rocketLaunchClip, 8);
     }
 
     public void PlayRocketExplosionSound()
