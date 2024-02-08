@@ -15,6 +15,7 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioClip _dockClip;
     [SerializeField] private AudioClip _rocketLaunchClip;
     [SerializeField] private AudioClip _rocketExplosionClip;
+    [SerializeField] private AudioClip _teleportClip;
 
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
@@ -71,5 +72,10 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     public void PlayRocketExplosionSound()
     {
         PlaySound(_rocketExplosionClip, 2);
+    }
+
+    public void PlayTeleportSound()
+    {
+        PlaySound(_teleportClip, 0.25f);
     }
 }

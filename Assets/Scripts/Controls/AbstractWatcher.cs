@@ -8,6 +8,7 @@ using UnityEngine.Events;
  * 
  * A Watcher extending this class should listen to player inputs and invoke events accordingly.
  */
+[RequireComponent(typeof(TeleportSound))]
 public abstract class AbstractControlWatcher : Singleton<AbstractControlWatcher>
 {
     private Pickable grabbedObject = null;
