@@ -1676,6 +1676,14 @@ PrefabInstance:
       propertyPath: _onInteractionFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 825643315}
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 825643315}
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartMainScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4729620207317609924, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2086,7 +2094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4690143699752417383, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0076904297
+      value: 0.009094238
       objectReference: {fileID: 0}
     - target: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_RootOrder
@@ -2165,6 +2173,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
   m_PrefabInstance: {fileID: 1903818770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1903818774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6111203285143994381, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
+  m_PrefabInstance: {fileID: 1903818770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903818775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903818774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a6195e0a0ec6c4d9c5dfb01b2e51e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _description: 'You can see every logs of the Debug.Log channel here ! '
+--- !u!114 &1903818776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903818774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6dcbd28f3c4f364ea7f46ca00f0d5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1934208617
 GameObject:
   m_ObjectHideFlags: 0

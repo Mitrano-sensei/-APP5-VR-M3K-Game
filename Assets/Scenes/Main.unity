@@ -5839,68 +5839,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1745450017 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2721122713674006942, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
-  m_PrefabInstance: {fileID: 4729620208534250954}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1745450018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745450017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0921c8cd10847d541bbcf78bf6be7b53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particlesPrefab: {fileID: 7671408545377179746, guid: 0a331785b8828904b98dc2f110697b43, type: 3}
---- !u!114 &1745450020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1745450017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7bf5efde6008b148b7723afa28038b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onInteraction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1131558715}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ExitApp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onInteractionFailed:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1131558715}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: ExitApp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _hasCooldown: 0
-  _cooldownInSeconds: 0
 --- !u!1 &1751826948
 GameObject:
   m_ObjectHideFlags: 0
@@ -7835,6 +7773,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 261174589}
     m_Modifications:
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1131558715}
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteractionFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1131558715}
     - target: {fileID: 4729620207317609924, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -7883,8 +7829,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewCockpit
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1365820301, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
 --- !u!1001 &6059448714128175066
 PrefabInstance:
@@ -8025,7 +7970,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4690143699752417383, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.008483887
+      value: 0.009277344
       objectReference: {fileID: 0}
     - target: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_RootOrder
