@@ -17,7 +17,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5988524436519997644, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
       propertyPath: m_Name
-      value: Basic Hold Button (Debug Only)
+      value: Basic Hold Button (Debug Only) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5988524436519997645, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
       propertyPath: m_RootOrder
@@ -71,6 +71,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5988524436519997644, guid: 954191d40abde9d4e89c97b2af671622, type: 3}
   m_PrefabInstance: {fileID: 3390395160464650518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-433998196259999139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941502680748499418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &381420259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +105,15 @@ MonoBehaviour:
   _onStopHold:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-9120874182590020442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941502680748499418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e1d53bd089b049aa213c6d88114b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

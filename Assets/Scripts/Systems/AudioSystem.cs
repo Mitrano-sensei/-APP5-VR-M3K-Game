@@ -9,6 +9,13 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioSource _musicSource;
     [SerializeField] private AudioSource _soundsSource;
     [SerializeField] private AudioClip _collisionClip;
+    [SerializeField] private AudioClip _pickupClip;
+    [SerializeField] private AudioClip _interactionClip;
+    [SerializeField] private AudioClip _interactionFailedClip;
+    [SerializeField] private AudioClip _dockClip;
+    [SerializeField] private AudioClip _rocketLaunchClip;
+    [SerializeField] private AudioClip _rocketExplosionClip;
+    [SerializeField] private AudioClip _teleportClip;
 
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
@@ -35,5 +42,40 @@ public class AudioSystem : StaticInstance<AudioSystem> {
                     10)
             );
         }
+    }
+
+    public void PlayPickupSound()
+    {
+        PlaySound(_pickupClip, 2);
+    }
+
+    public void PlayInteractionSound()
+    {
+        PlaySound(_interactionClip, 2);
+    }
+
+    public void PlayInteractionFailedSound()
+    {
+        PlaySound(_interactionFailedClip, 2);
+    }
+
+    public void PlayDockSound()
+    {
+        PlaySound(_dockClip, 1);
+    }
+
+    public void PlayRocketLaunchSound()
+    {
+        PlaySound(_rocketLaunchClip, 8);
+    }
+
+    public void PlayRocketExplosionSound()
+    {
+        PlaySound(_rocketExplosionClip, 2);
+    }
+
+    public void PlayTeleportSound()
+    {
+        PlaySound(_teleportClip, 0.25f);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.Events;
 /**
  * Objects that can be picked up.
  */
+[RequireComponent(typeof(PickupSound))]
 public class Pickable : MonoBehaviour
 {
     [Header("Events")]

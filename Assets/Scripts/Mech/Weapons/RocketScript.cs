@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(RocketSound))]
 public class RocketScript : MonoBehaviour
 {
     private float _speed;
@@ -20,6 +21,7 @@ public class RocketScript : MonoBehaviour
     public float ExplosionRadius { get => _explosionRadius; set => _explosionRadius = value; }
     public float ExplosionForce { get => _explosionForce; set => _explosionForce = value; }
 
+    public UnityEvent OnLaunch = new UnityEvent();
     public UnityEvent OnExplode { get; set; }
     public bool IsAlly { get => _isAlly; set => _isAlly = value; }
     public GameObject FiredBy { get => _firedBy; set => _firedBy = value; }
@@ -27,6 +29,7 @@ public class RocketScript : MonoBehaviour
     private void Start()
     {
         _logger = LogManager.Instance;
+        OnLaunch.Invoke();
     }
 
     private void Update()
