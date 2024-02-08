@@ -20,15 +20,24 @@ public class Hoverable : MonoBehaviour
 [Serializable] public class OnHoverEnter: UnityEvent<OnHoverEnterEvent> {  }
 public class OnHoverEnterEvent {
     public GameObject HoveredWith;
-    
-    public OnHoverEnterEvent(GameObject hoveredWith = null)
+    public Vector3 PointPosition;
+
+    public OnHoverEnterEvent(Vector3 pointPosition = new Vector3(),  GameObject hoveredWith = null)
     {
+        PointPosition = pointPosition;
         HoveredWith = hoveredWith;
     }
 }
 
 [Serializable] public class OnHover : UnityEvent<OnHoverEvent> { }
-public class OnHoverEvent { }
+public class OnHoverEvent {
+    public Vector3 PointPosition;
+
+    public OnHoverEvent(Vector3 pointPosition = new Vector3())
+    {
+        PointPosition = pointPosition;
+    }
+}
 
 [Serializable] public class OnHoverExit : UnityEvent<OnHoverExitEvent> { }
 public class OnHoverExitEvent {

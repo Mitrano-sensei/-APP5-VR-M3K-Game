@@ -43,6 +43,7 @@ public class MechMovements : MonoBehaviour
 
     public void StartMovingForward()
     {
+        _isMovingBackward = false;
         _isMovingForward = true;
     }
 
@@ -53,6 +54,7 @@ public class MechMovements : MonoBehaviour
 
     public void StartMovingBackward()
     {
+        _isMovingForward = false;
         _isMovingBackward = true;
     }
 
@@ -63,6 +65,7 @@ public class MechMovements : MonoBehaviour
 
     public void StartRotatingLeft()
     {
+        _isRotatingRight = false;
         _isRotatingLeft = true;
     }
 
@@ -73,6 +76,7 @@ public class MechMovements : MonoBehaviour
 
     public void StartRotatingRight()
     {
+        _isRotatingLeft = false;
         _isRotatingRight = true;
     }
 

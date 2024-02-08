@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -54,3 +55,23 @@ public class MechRocketLauncher : MonoBehaviour
     }   
 
 }
+
+#region editor
+
+[CustomEditor(typeof(MechRocketLauncher))]
+public class FireEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        var fire = target as MechRocketLauncher;
+        var isPlaymode = UnityEditor.EditorApplication.isPlaying;
+
+        if (isPlaymode && GUILayout.Button("Fire"))
+        {
+            fire.Fire();
+        }
+    }
+}
+
+#endregion
