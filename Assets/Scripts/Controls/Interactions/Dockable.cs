@@ -8,6 +8,7 @@ using UnityEngine.Events;
 /**
  * Objects that can be docked to a docker.
  */
+[RequireComponent(typeof(DockSound))]
 public class Dockable : Pickable
 {
     [Header("Position")]

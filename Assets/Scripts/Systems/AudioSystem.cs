@@ -12,6 +12,7 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     [SerializeField] private AudioClip _pickupClip;
     [SerializeField] private AudioClip _interactionClip;
     [SerializeField] private AudioClip _interactionFailedClip;
+    [SerializeField] private AudioClip _dockClip;
 
     public void PlayMusic(AudioClip clip) {
         _musicSource.clip = clip;
@@ -53,5 +54,10 @@ public class AudioSystem : StaticInstance<AudioSystem> {
     public void PlayInteractionFailedSound()
     {
         PlaySound(_interactionFailedClip, 2);
+    }
+
+    public void PlayDockSound()
+    {
+        PlaySound(_dockClip, 2);
     }
 }
