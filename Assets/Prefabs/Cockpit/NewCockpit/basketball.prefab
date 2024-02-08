@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 4927139722947769347}
   - component: {fileID: 1592995769022522592}
   - component: {fileID: 8217219645838419018}
+  - component: {fileID: -7826465568598634573}
+  - component: {fileID: -1882927045578419817}
   m_Layer: 0
   m_Name: basketball
   m_TagString: Untagged
@@ -131,3 +133,32 @@ MonoBehaviour:
   _onUnPick:
     m_PersistentCalls:
       m_Calls: []
+  _useRotationCorrecter: 0
+  _correctPickRotation: {x: 0, y: 0, z: 0}
+--- !u!114 &-7826465568598634573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505017759869557967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-1882927045578419817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505017759869557967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e1d53bd089b049aa213c6d88114b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

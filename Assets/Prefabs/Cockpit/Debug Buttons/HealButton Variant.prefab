@@ -89,7 +89,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8958322583967140623, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
       propertyPath: m_Name
-      value: HealButton
+      value: HealButton Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
+--- !u!1 &970957709038289847 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8958322583967140623, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
+  m_PrefabInstance: {fileID: 8154842486710143160}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6478247324211775779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970957709038289847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &688534053575944921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970957709038289847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e1d53bd089b049aa213c6d88114b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

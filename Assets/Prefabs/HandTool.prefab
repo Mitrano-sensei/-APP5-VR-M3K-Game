@@ -345,6 +345,8 @@ GameObject:
   - component: {fileID: 8024380049809951988}
   - component: {fileID: 8024380049809951989}
   - component: {fileID: 8024380049809952008}
+  - component: {fileID: -4082171201481097732}
+  - component: {fileID: 8440446507082663523}
   m_Layer: 0
   m_Name: HandTool
   m_TagString: Untagged
@@ -479,3 +481,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4082171201481097732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024380049809951991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8440446507082663523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024380049809951991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e1d53bd089b049aa213c6d88114b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8958322583967140623, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
       propertyPath: m_Name
-      value: Movement Button
+      value: Movement Button Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
@@ -62,6 +62,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8958322583967140623, guid: 7eba268651bf72d4cbd1afd2840a494d, type: 3}
   m_PrefabInstance: {fileID: 1026215132047734942}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &-3732643692984454001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245954393328677777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1751383834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,3 +119,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _hasCooldown: 0
+  _cooldownInSeconds: 0
+--- !u!114 &8446060323880035091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245954393328677777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 820e1d53bd089b049aa213c6d88114b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3562880875466209012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8245954393328677777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179564d3509cd7446b77dde5e162dba7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onCollision:
+    m_PersistentCalls:
+      m_Calls: []
