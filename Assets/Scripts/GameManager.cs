@@ -35,7 +35,15 @@ public class GameManager : Singleton<GameManager>
         CurrentHealth = MaxHealth;
 
         OnHealthChange.AddListener(OnHealthChangeHandler);
-        OnHealthChange.AddListener(e => StartMenuScene());
+        OnHealthChange.AddListener(e =>
+        {
+            if (e.Amount < 0)
+            {
+                OnDamageTaken?.Invoke(e);
+            }
+        });
+
+        GainHealth(0);
     }
 
     private void OnHealthChangeHandler(OnHealthChangeEvent onHealthChangeEvent)
@@ -44,6 +52,7 @@ public class GameManager : Singleton<GameManager>
         _logger.Trace("Health remaining: " + CurrentHealth);
         if (CurrentHealth <= 0)
         {
+            StartMenuScene();
             _logger.Trace("You are DED. GAME OVER.");
         }
 
