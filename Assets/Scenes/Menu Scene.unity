@@ -288,7 +288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5aff1950e358a46b70910d01635169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _logMode: 0
+  _logMode: 1
   _inGameConsole: {fileID: 1903818771}
 --- !u!1 &198579915
 GameObject:
@@ -1288,7 +1288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 20
-  _player: {fileID: 0}
+  _playerMech: {fileID: 0}
   _onHealthChange:
     m_PersistentCalls:
       m_Calls: []
@@ -1308,6 +1308,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _buttonParent: {fileID: 337672699}
+  _intensity: 1.4
 --- !u!4 &825643316
 Transform:
   m_ObjectHideFlags: 0
@@ -1663,6 +1664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1746373626}
     m_Modifications:
+    - target: {fileID: 50530567, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _description
+      value: "Credits : \nElyas TIGRE - Bastien PILI"
+      objectReference: {fileID: 0}
     - target: {fileID: 1365820301, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
       propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1671,6 +1676,14 @@ PrefabInstance:
       propertyPath: _onInteractionFailed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 825643315}
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 825643315}
+    - target: {fileID: 1745450020, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
+      propertyPath: _onInteraction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitApp
+      objectReference: {fileID: 0}
     - target: {fileID: 4729620207317609924, guid: 86cb367a93da38540af6329ecefa7a06, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2081,7 +2094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4690143699752417383, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0076293945
+      value: 0.00793457
       objectReference: {fileID: 0}
     - target: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
       propertyPath: m_RootOrder
@@ -2160,6 +2173,45 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6107694177497397987, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
   m_PrefabInstance: {fileID: 1903818770}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1903818774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6111203285143994381, guid: d6ef41888e9bb2b4cbabf2da566ab6a0, type: 3}
+  m_PrefabInstance: {fileID: 1903818770}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1903818775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903818774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9a6195e0a0ec6c4d9c5dfb01b2e51e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _description: 'You can see every logs of the Debug.Log channel here ! '
+--- !u!114 &1903818776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1903818774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6dcbd28f3c4f364ea7f46ca00f0d5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1934208617
 GameObject:
   m_ObjectHideFlags: 0
@@ -2217,8 +2269,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please use the handtool on the table to analyse the button next to the
+  m_text: 'Please use the handtool on the table to analyse the button next to the
     motherboard.
+
+
+    Scan the basketball for credits !'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2245,7 +2300,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.25
+  m_fontSize: 0.15
   m_fontSizeBase: 0.05
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2595,3 +2650,42 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5495902117074765545, guid: aa8f47ad7fb57fd4ab591cee4d59d336, type: 3}
+--- !u!1 &2030000384 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8024380049809951991, guid: 8472608a71684b04a906ae8d47f33e5a, type: 3}
+  m_PrefabInstance: {fileID: 390987569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2030000391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030000384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0921c8cd10847d541bbcf78bf6be7b53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particlesPrefab: {fileID: 7671408545377179746, guid: 162f28d5ef52f344f9c90609064fe946, type: 3}
+--- !u!114 &2030000392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2030000384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6dcbd28f3c4f364ea7f46ca00f0d5a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _onHoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHover:
+    m_PersistentCalls:
+      m_Calls: []
+  _onHoverExit:
+    m_PersistentCalls:
+      m_Calls: []

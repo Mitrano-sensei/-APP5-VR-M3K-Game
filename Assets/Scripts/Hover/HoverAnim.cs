@@ -15,7 +15,15 @@ public class HoverAnim : MonoBehaviour
         _hoverable = GetComponent<Hoverable>();
         _particles = Instantiate(_particlesPrefab, transform.position, Quaternion.identity, transform);
         _particles.Stop();
-        _hoverable.OnHoverEnter.AddListener((OnHoverEnterEvent) => _particles.Play());
+        _hoverable.OnHoverEnter.AddListener((OnHoverEnterEvent) => {
+                _particles.transform.position = OnHoverEnterEvent.PointPosition;
+                _particles.Play();
+            });
+        _hoverable.OnHover.AddListener(e =>
+        {
+            _particles.transform.position = e.PointPosition;
+        });
+
         _hoverable.OnHoverExit.AddListener((OnHoverExitEvent) => _particles.Stop());
     }
 }
