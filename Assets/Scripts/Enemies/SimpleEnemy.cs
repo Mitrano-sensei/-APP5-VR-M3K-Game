@@ -162,8 +162,11 @@ public class SimpleEnemy : MonoBehaviour
             _lockTargetPosition = _gameManager.PlayerMech.transform.position;
 
         var lockTargetPosition = _lockTargetPosition ?? _gameManager.PlayerMech.transform.position; // So Vector3 is not nullable
+        var a1 = Vector3.Angle(transform.forward, lockTargetPosition - transform.position);
+        var a2 = Vector3.Angle(lockTargetPosition - transform.position, transform.forward);
 
-        if (Vector3.Angle(transform.forward, lockTargetPosition - transform.position) < _lockAngle)
+        Debug.Log(a1 + " " + a2 + " " + _lockAngle);
+        if (a1 < _lockAngle || a2 < _lockAngle)
         {
             // If the enemy is facing the player, start charging
             ChangeState(EnemyState.Charging);

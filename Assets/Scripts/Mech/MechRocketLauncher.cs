@@ -57,6 +57,7 @@ public class MechRocketLauncher : MonoBehaviour
 }
 
 #region editor
+#if UNITY_EDITOR
 
 [CustomEditor(typeof(MechRocketLauncher))]
 public class FireEditor : Editor
@@ -74,4 +75,5 @@ public class FireEditor : Editor
     }
 }
 
+#endif
 #endregion
